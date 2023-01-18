@@ -1,13 +1,70 @@
-@import "vars";
+@import "@/assets/vars.scss";
 @import "reboot.min";
-@import "fonts/fonts.scss";
 
 body {
-  font-size: 16px;
-  min-width: 320px;
   position: relative;
   line-height: 1.6;
   font-family: $default-font;
   font-weight: 400;
   overflow-x: hidden;
+  @media only screen and (max-width: $lg) {
+    font-size: 16px;
+  }
+  @media only screen and (max-width: $md) {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  @media only screen and (max-width: $sm) {
+    line-height: 1.2;
+  }
+  @media only screen and (max-width: $xs) {
+    font-size: 10px;
+  }
+}
+.common {
+  &__container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    padding: 10px;
+    @media only screen and (max-width: $lg) {
+      max-width: 900px;
+    }
+    @media only screen and (max-width: $md) {
+      max-width: 700px;
+    }
+    @media only screen and (max-width: $sm) {
+      padding: 5px;
+      max-width: 450px;
+    }
+    @media only screen and (max-width: $xs) {
+      max-width: 100%;
+    }
+  }
+  &__img-wrapper {
+    display: flex;
+  }
+  &__img {
+    object-fit: cover;
+  }
+  &__link {
+    transition: all 0.3s ease;
+    &:hover,
+    &:active,
+    &:visited,
+    &:focus {
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+  }
+  &__button {
+    transition: all 0.3s ease;
+    border: none;
+    &:hover,
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
 }

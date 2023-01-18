@@ -1,0 +1,33 @@
+@import "fonts/fonts.scss";
+// fonts
+$default-font: "Asap";
+// colors
+:root {
+  --violet: #805cad;
+  --violet-dark: #664989;
+  --dark-green: #013835;
+  --light-green: #cdff96;
+  --turquoise: #cdebd2;
+  --turquoise-dark: #8cc095;
+  --yellow: #ffe14b;
+  --pink: #ffd3ca;
+  --light-blue: #f0f0f0;
+  --gray: #2e2b2b;
+  --black: black;
+  --white: #ffff;
+  --salad: #cdff96;
+  --navy: #3b3859;
+  --red: #dc143c;
+
+  --lg: 991px;
+}
+// breakpoints
+$xl: 1279px;
+$lg: 991px;
+$md: 767px;
+$sm: 479px;
+$xs: 319px;
+// size
+$space: 20px;
+// layout
+$box-shadow: 0 5px 20px rgb(12 68 251 / 13%)
