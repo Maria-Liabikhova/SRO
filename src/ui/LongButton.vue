@@ -22,7 +22,6 @@ export default {
   background-color: var(--violet);
   color: var(--white);
   border-radius: 30px;
-  // font-size: 16px;
   white-space: nowrap;
   &:hover,
   &:active,
@@ -33,11 +32,5 @@ export default {
   @media only screen and (max-width: $lg) {
     padding: 12px 18px;
   }
-  // @media only screen and (max-width: $md) {
-  //   padding: 15px 20px;
-  // }
-  // @media only screen and (max-width: $sm) {
-  //   padding: 15px 20px;
-  // }
 }
 </style>

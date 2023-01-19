@@ -3,7 +3,7 @@
     <div class="common__container">
       <div class="register__container">
         <div class="register__info">
-          <h2 class="register__title">
+          <h2 class="register__title common__h2">
             Вступить в СРО в России.<br />
             Оформление допуска СРО.
           </h2>
@@ -12,32 +12,43 @@
             специалисты НРС; получение выписки.
           </p>
           <div class="register__button-wrapper">
-            <LongButton name="Запросить стоимость СРО" />
+            <LongButton
+              name="Запросить стоимость СРО"
+              @onClick="onAskPriceClick"
+            />
           </div>
         </div>
         <div class="register__img-wrapper"></div>
-        <div class="advantages">
-          <div
-            v-for="item in advantages"
-            :key="item.text"
-            class="advantages__item"
-          >
-            <img :src="item.icon" class="advantages__icon" />
-            <p class="advantages__text">{{ item.text }}</p>
-          </div>
+      </div>
+    </div>
+    <div class="common__container advantages__container">
+      <div class="advantages">
+        <div
+          v-for="item in advantages"
+          :key="item.text"
+          class="advantages__item"
+        >
+          <img :src="item.icon" class="advantages__icon" />
+          <p class="advantages__text">{{ item.text }}</p>
         </div>
       </div>
     </div>
+    <BaseModal v-if="showModal" @closeModal="showModal = false"
+      ><RequestModalForm
+    /></BaseModal>
   </section>
 </template>
 
 <script>
 import LongButton from "@/ui/LongButton";
+import BaseModal from "@/shared/BaseModal.vue";
+import RequestModalForm from "@/shared/RequestModalForm.vue";
 export default {
   name: "RegisterSection",
-  components: { LongButton },
+  components: { LongButton, BaseModal, RequestModalForm },
   data() {
     return {
+      showModal: false,
       advantages: [
         {
           text: "Работаем с СРО, имеющими статус с 2009 года и прошедшими все проверки Ростехнадзора",
@@ -62,78 +73,74 @@ export default {
       ],
     };
   },
+  methods: {
+    onAskPriceClick() {
+      this.showModal = true;
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
-$section-advantages-height-xl: 320px;
-$section-advantages-height-lg: 260px;
-$section-advantages-height-md: 200px;
-$section-advantages-height-sm: 300px;
+$offset-lg: 30px;
 .register {
   width: 100%;
-  margin-top: 90px; //header height
+  margin-top: 70px; //header height
   background-color: var(--white);
-  margin-bottom: calc($section-advantages-height-xl - 20px);
-  @media only screen and (max-width: $lg) {
-    margin-bottom: calc($section-advantages-height-lg);
-  }
   @media only screen and (max-width: $md) {
-    margin-bottom: calc($section-advantages-height-md);
+    margin-top: 50px; //header height
   }
   @media only screen and (max-width: $sm) {
-    margin-bottom: calc($section-advantages-height-sm);
+    margin-top: 81px; //header height
   }
   &__container {
     background-color: var(--light-blue);
     display: flex;
     border-radius: 25px;
     height: auto;
-    padding: 30px 60px;
-    position: relative;
+    padding: $offset-lg 60px;
+    @media only screen and (max-width: $lg) {
+      padding: $offset-lg;
+    }
+    @media only screen and (max-width: $sm) {
+      padding-top: 10px;
+    }
   }
   &__info {
     margin-right: 100px;
     flex: 1;
-  }
-  &__title {
-    font-family: "Peta";
-    text-transform: uppercase;
-    font-size: 38px;
-    letter-spacing: -2px;
-    line-height: 50px;
-    margin-bottom: 10px;
+    @media only screen and (max-width: $lg) {
+      margin-right: 70px;
+    }
     @media only screen and (max-width: $md) {
-      letter-spacing: 0.4px;
-      font-size: 20px;
-      line-height: 25px;
+      margin-right: 30px;
     }
     @media only screen and (max-width: $sm) {
-      line-height: 22px;
-      font-size: 18px;
-      margin-top: 25px;
+      margin-right: 10px;
+    }
+  }
+  &__title {
+    margin-bottom: 10px;
+    @media only screen and (max-width: $sm) {
+      margin-top: 15px;
     }
   }
   &__text {
     line-height: 34px;
-    font-size: 20px;
-    line-height: 34px;
     margin-bottom: 50px;
-    @media only screen and (max-width: $xl) {
-      width: 100%;
-      max-width: 350px;
+    width: 100%;
+    max-width: 350px;
+    @media only screen and (max-width: $lg) {
+      line-height: 25px;
     }
     @media only screen and (max-width: $md) {
-      font-size: 14px;
       line-height: 20px;
-      font-size: 16px;
       width: 100%;
       max-width: 180px;
       padding-top: 10px;
       margin-bottom: 25px;
     }
     @media only screen and (max-width: $sm) {
-      font-size: 12px;
       width: 100%;
       max-width: 150px;
       line-height: 20px;
@@ -158,58 +165,69 @@ $section-advantages-height-sm: 300px;
   }
 }
 .advantages {
-  position: absolute;
-  height: $section-advantages-height-xl;
-  overflow-y: scroll;
   background-color: var(--white);
   box-shadow: $box-shadow;
   display: flex;
-  width: calc(100% - 100px);
-  left: 50%;
-  bottom: -50%;
-  transform: translate(-50%, 25px);
+  width: 100%;
   border-radius: 4px;
   padding: 25px;
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateY(-$offset-lg);
   @media only screen and (max-width: $lg) {
-    width: 100%;
     padding: 10px;
-    transform: translate(-50%, -25%);
-    height: $section-advantages-height-lg;
+    max-width: 800px;
   }
   @media only screen and (max-width: $md) {
     padding: 5px;
     padding-top: 10px;
-    font-size: 12px;
-    transform: translate(-50%, 0);
-    height: $section-advantages-height-md;
+    max-width: 550px;
   }
   @media only screen and (max-width: $sm) {
-    flex-wrap: wrap;
-    transform: translate(-50%, 100px);
-    height: $section-advantages-height-sm;
+    max-width: 100%;
+    padding: 0;
+    display: inline-block;
+    background-color: transparent;
+    box-shadow: none;
   }
-
+  &__container {
+    padding-right: 50px;
+    padding-left: 50px;
+    @media only screen and (max-width: $md) {
+      padding-right: 25px;
+      padding-left: 25px;
+    }
+  }
   &__item {
-    padding: 25px;
+    padding: 10px 14px;
     flex: 1;
     box-sizing: content-box;
     position: relative;
     display: flex;
     flex-direction: column;
     @media only screen and (max-width: $lg) {
-      padding: 10px;
+      padding: 5px 10px;
     }
     @media only screen and (max-width: $md) {
       padding: 5px;
     }
     @media only screen and (max-width: $sm) {
       min-width: 120px;
+      padding: 15px 5px;
+      border: 0.1px solid var(--light-blue);
+      border-radius: 4px;
+      background-color: var(--white);
+      margin-bottom: 5px;
+      box-shadow: $box-shadow;
     }
     &::after {
       content: "";
       position: absolute;
       width: 0.5px;
-      background-color: var(--gray);
+      height: 210px;
+      background-color: var(--gray-dark);
       opacity: 0.2;
       top: 50%;
       right: 0;

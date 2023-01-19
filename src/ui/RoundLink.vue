@@ -21,6 +21,10 @@ export default {
   border-radius: 50%;
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: $lg) {
+    width: 40px;
+    height: 40px;
+  }
   @media only screen and (max-width: $sm) {
     width: 35px;
     height: 35px;

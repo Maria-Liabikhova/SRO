@@ -12,14 +12,15 @@ $default-font: "Asap";
   --yellow: #ffe14b;
   --pink: #ffd3ca;
   --light-blue: #f0f0f0;
-  --gray: #2e2b2b;
+  --gray-dark: #2e2b2b;
+  --gray: #a8a7a7;
+  --gray-pail: #dedede;
   --black: black;
   --white: #ffff;
   --salad: #cdff96;
   --navy: #3b3859;
   --red: #dc143c;
-
-  --lg: 991px;
+  --violet-pail: rgba(75, 80, 109, 0.6);
 }
 // breakpoints
 $xl: 1279px;

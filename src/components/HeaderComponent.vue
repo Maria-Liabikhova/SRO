@@ -19,22 +19,34 @@
           <a href="tel:+79219610320" class="common__link header__link">
             +7(921)961-03-20</a
           >
-          <LongButton name="Оставить заявку" @onClick="onConnectUsClick" />
+          <div class="header__btn-wrapper">
+            <LongButton name="Оставить заявку" @onClick="onConnectUsClick" />
+          </div>
         </div>
       </div>
     </div>
+    <BaseModal v-if="showModal" @closeModal="showModal = false"
+      ><RequestModalForm
+    /></BaseModal>
   </div>
 </template>
 
 <script>
 import RoundLink from "@/ui/RoundLink";
 import LongButton from "@/ui/LongButton";
+import BaseModal from "@/shared/BaseModal.vue";
+import RequestModalForm from "@/shared/RequestModalForm.vue";
 export default {
   name: "HeaderComponent",
-  components: { RoundLink, LongButton },
+  components: { RoundLink, LongButton, BaseModal, RequestModalForm },
+  data() {
+    return {
+      showModal: false,
+    };
+  },
   methods: {
     onConnectUsClick() {
-      alert("HelloWorld!");
+      this.showModal = true;
     },
   },
 };
@@ -50,15 +62,18 @@ export default {
   z-index: 1;
   &__container {
     display: flex;
+    width: 100%;
+    @media only screen and (max-width: $sm) {
+      display: inline-block;
+    }
   }
   &__img-wrapper {
     height: 70px;
     width: auto;
+    padding-top: 5px;
+    padding-right: 10px;
     @media only screen and (max-width: $md) {
       height: 50px;
-    }
-    @media only screen and (max-width: $xs) {
-      height: 35px;
     }
   }
   &__contacts {
@@ -66,6 +81,9 @@ export default {
     align-items: center;
     margin-left: auto;
     justify-content: space-between;
+    @media only screen and (max-width: $md) {
+      justify-content: flex-end;
+    }
   }
   &__link-wrapper {
     display: flex;
@@ -77,15 +95,23 @@ export default {
     display: flex;
     align-items: center;
     font-size: 25px;
-    color: var(--gray);
+    color: var(--gray-dark);
     margin-left: 20px;
     margin-right: 20px;
     &:hover,
     &:active {
       color: var(--black);
     }
-    @media only screen and (max-width: $md) {
+    @media only screen and (max-width: $lg) {
       font-size: 18px;
+    }
+    @media only screen and (max-width: $md) {
+      margin: 0;
+    }
+  }
+  &__btn-wrapper {
+    @media only screen and (max-width: $md) {
+      display: none;
     }
   }
 }
