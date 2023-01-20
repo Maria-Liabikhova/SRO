@@ -27,7 +27,7 @@ export default {
   &:active,
   &:focus {
     cursor: pointer;
-    background-color: var(--violet-dark);
+    background-color: var(--violet-middle);
   }
   @media only screen and (max-width: $lg) {
     padding: 12px 18px;

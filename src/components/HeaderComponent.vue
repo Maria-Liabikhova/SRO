@@ -20,7 +20,7 @@
             +7(921)961-03-20</a
           >
           <div class="header__btn-wrapper">
-            <LongButton name="Оставить заявку" @onClick="onConnectUsClick" />
+            <LongButton name="Оставить заявку" @onClick="showModal = true" />
           </div>
         </div>
       </div>
@@ -43,11 +43,6 @@ export default {
     return {
       showModal: false,
     };
-  },
-  methods: {
-    onConnectUsClick() {
-      this.showModal = true;
-    },
   },
 };
 </script>
@@ -106,6 +101,8 @@ export default {
       font-size: 18px;
     }
     @media only screen and (max-width: $md) {
+      font-weight: 600;
+      font-size: 16px;
       margin: 0;
     }
   }

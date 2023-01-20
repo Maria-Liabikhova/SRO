@@ -4,8 +4,10 @@ $default-font: "Asap";
 // colors
 :root {
   --violet: #805cad;
-  --violet-dark: #664989;
-  --dark-green: #013835;
+  --violet-middle: #664989;
+  --violet-light: #ac8bd3;
+  --violet-dark: rgba(75, 80, 109, 0.6);
+  --blue: #3ea8c5;
   --light-green: #cdff96;
   --turquoise: #cdebd2;
   --turquoise-dark: #8cc095;
@@ -20,7 +22,6 @@ $default-font: "Asap";
   --salad: #cdff96;
   --navy: #3b3859;
   --red: #dc143c;
-  --violet-pail: rgba(75, 80, 109, 0.6);
 }
 // breakpoints
 $xl: 1279px;

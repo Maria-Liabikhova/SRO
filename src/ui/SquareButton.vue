@@ -20,7 +20,10 @@ export default {
   padding: 10px 40px;
   margin-right: 25px;
   &:hover {
-    background-color: var(--violet-dark);
+    background-color: var(--violet-middle);
+  }
+  @media only screen and (max-width: $md) {
+    font-size: 14px;
   }
 }
 </style>
