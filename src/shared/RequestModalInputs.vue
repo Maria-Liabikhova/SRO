@@ -10,7 +10,7 @@
       @blur="onFieldBlur('userName')"
       @focus="userNameFieldFocused = true"
     />
-    <p v-if="nameFieldError" class="input__error-text">
+    <p v-if="nameFieldError" class="common__error-text">
       {{ getNameErrorText($v.userName) }}
     </p>
     <input
@@ -23,7 +23,7 @@
       @blur="onFieldBlur('contact')"
       @focus="contactFieldFocused = true"
     />
-    <p class="input__error-text" v-if="contactFieldError">
+    <p class="common__error-text" v-if="contactFieldError">
       {{ getContactErrorText($v.contact) }}
     </p>
   </div>
@@ -123,12 +123,8 @@ export default {
   &--error {
     margin-bottom: 0;
   }
-  &__error-text {
-    font-size: 12px;
-    line-height: 12px;
-    color: var(--red);
-    margin-bottom: 13px;
-    opacity: 0.8;
-  }
+}
+.common__error-text {
+  margin-bottom: 13px;
 }
 </style>

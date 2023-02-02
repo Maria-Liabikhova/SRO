@@ -1,6 +1,6 @@
 <template>
   <button
-    type="button"
+    type="type"
     class="common__button long-button"
     @click="$emit('onClick')"
   >
@@ -11,7 +11,16 @@
 <script>
 export default {
   name: "LongButton",
-  props: ["name"],
+  props: {
+    name: {
+      type: String,
+      require: true,
+    },
+    type: {
+      type: String,
+      default: "button",
+    },
+  },
 };
 </script>
 
@@ -23,11 +32,10 @@ export default {
   color: var(--white);
   border-radius: 30px;
   white-space: nowrap;
-  &:hover,
-  &:active,
-  &:focus {
+  &:hover {
     cursor: pointer;
     background-color: var(--violet-middle);
+    box-shadow: 4px 4px 8px -1px var(--violet);
   }
   @media only screen and (max-width: $lg) {
     padding: 12px 18px;

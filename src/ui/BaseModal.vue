@@ -54,7 +54,7 @@ export default {
   background-color: var(--white);
   padding: 40px;
   padding-top: 20px;
-  width: 30vw;
+  width: 40vw;
   @media only screen and (max-width: $xl) {
     width: 50vw;
   }

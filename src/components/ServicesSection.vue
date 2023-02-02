@@ -11,7 +11,7 @@
           v-for="item in servises"
           :key="item.title"
           class="card"
-          @click="showModal = true"
+          @click="onCardClick(item.title)"
         >
           <div class="card__inner-wapper">
             <img :src="item.icon" class="card__img" />
@@ -23,19 +23,22 @@
         </div>
       </div>
     </div>
-    <BaseModal v-if="showModal" @closeModal="showModal = false"></BaseModal>
+    <BaseModal v-if="showServiceModal" @closeModal="SET_SERVICE_MODAL(false)"
+      ><ServiceModalForm :requestModalTitle="requestModalTitle"
+    /></BaseModal>
   </section>
 </template>
 
 <script>
 import BaseModal from "@/ui/BaseModal.vue";
-// import RequestModalForm from "@/shared/RequestModalForm.vue";
+import ServiceModalForm from "@/shared/ServiceModalForm.vue";
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "ServicesSection",
-  components: { BaseModal },
+  components: { BaseModal, ServiceModalForm },
   data() {
     return {
-      showModal: false,
+      requestModalTitle: "",
       servises: [
         {
           icon: require("@/assets/img/people.svg"),
@@ -69,6 +72,16 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    ...mapState("requestModal", ["showServiceModal"]),
+  },
+  methods: {
+    ...mapMutations("requestModal", ["SET_SERVICE_MODAL"]),
+    onCardClick(v) {
+      this.SET_SERVICE_MODAL(true);
+      this.requestModalTitle = v;
+    },
   },
 };
 </script>

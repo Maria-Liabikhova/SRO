@@ -6,10 +6,10 @@
         <div class="request__checkbox-container">
           <CheckBox
             v-for="item in requestModalItems"
-            :key="item.name"
+            :key="item.id"
             class="request__checkbox-wrapper"
             :label-name="item.labelName"
-            :name="item.name"
+            name="service"
             :value="item.value"
             @onInput="onCheckBoxInput(item)"
           />
@@ -44,8 +44,8 @@ import PrivacyPolicyModalForm from "@/shared/PrivacyPolicyModalForm.vue";
 import BaseModal from "@/ui/BaseModal.vue";
 import AgreementText from "@/shared/AgreementText.vue";
 import RequestModalInputs from "@/shared/RequestModalInputs.vue";
-import emailjs from "@emailjs/browser";
-import { mapMutations } from "vuex";
+import send from "@/mixins/sendFormToEmail";
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "RequestModalForm",
   components: {
@@ -66,6 +66,7 @@ export default {
       required: true,
     },
   },
+  mixins: [send],
   data() {
     return {
       showPolicyModal: false,
@@ -74,15 +75,23 @@ export default {
       resultInfo: "",
     };
   },
+  computed: {
+    ...mapState("requestModal", ["showSroModal", "showRequestModal"]),
+  },
   methods: {
-    ...mapMutations("requestModal", ["SET_REQUEST_MODAL"]),
+    ...mapMutations("requestModal", ["SET_REQUEST_MODAL", "SET_SRO_MODAL"]),
     onCheckBoxInput(v) {
-      !v.value ? (v.value = `${v.labelName};`) : false;
+      !v.value ? (v.value = v.labelName) : false;
     },
     showResultContent() {
       this.showResultModal = true;
       setTimeout(() => {
-        this.SET_REQUEST_MODAL(false);
+        if (this.showRequestModal) {
+          this.SET_REQUEST_MODAL(false);
+        }
+        if (this.showSroModal) {
+          this.SET_SRO_MODAL(false);
+        }
         this.showResultModal = false;
       }, 3000);
     },
@@ -91,27 +100,7 @@ export default {
     },
     onSendForm() {
       if (!this.fieldsInvalid) {
-        emailjs
-          .sendForm(
-            "service_eiz3obr",
-            "template_a7rgl9u",
-            this.$refs.form,
-            "9F9dhwN-jlGAQ5Ix6"
-          )
-          .then(
-            /* eslint-disable */
-            (result) => {
-              /* eslint-enable */
-              this.resultInfo = "Спасибо, ваша заявка отправлена.";
-              this.showResultContent();
-            },
-            /* eslint-disable */
-            (error) => {
-              /* eslint-enable */
-              this.resultInfo = `Что-то пошло не так. <br/> Повторите попытку позже.`;
-              this.showResultContent();
-            }
-          );
+        this.send(this.$refs.form);
       }
     },
     onShowPolicyModal() {

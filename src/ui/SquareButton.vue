@@ -3,7 +3,6 @@
     class="square-button common__button"
     :type="type"
     @click="$emit('onClick')"
-    :disabled="disabled"
   >
     {{ name }}
   </button>
@@ -12,7 +11,7 @@
 <script>
 export default {
   name: "SquareButton",
-  props: ["name", "type", "disabled"],
+  props: ["name", "type"],
 };
 </script>
 
@@ -26,15 +25,10 @@ export default {
   margin-right: 25px;
   &:hover {
     background-color: var(--violet-middle);
-    &:disabled {
-      background-color: var(--violet);
-    }
+    box-shadow: 4px 4px 8px -1px var(--violet);
   }
   @media only screen and (max-width: $md) {
     font-size: 14px;
-  }
-  &:disabled {
-    opacity: 0.7;
   }
 }
 </style>

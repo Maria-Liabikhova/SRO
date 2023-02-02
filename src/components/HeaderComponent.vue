@@ -55,37 +55,37 @@ export default {
         {
           value: false,
           labelName: "Вступление в СРО",
-          name: "join_sro",
+          id: 1,
         },
         {
           value: false,
           labelName: "Внесение специалистов в НРС",
-          name: "add_nrc",
+          id: 2,
         },
         {
           value: false,
           labelName: "Повышение квалификации руководителей и специалистов",
-          name: "study",
+          id: 3,
         },
         {
           value: false,
           labelName: "Сертификация ISO 9001",
-          name: "certify",
+          id: 4,
         },
         {
           value: false,
           labelName: "Оценка опыта и деловой репутации",
-          name: "reputation",
+          id: 5,
         },
         {
           value: false,
           labelName: "Независимая оценка квалификации",
-          name: "assessment",
+          id: 6,
         },
         {
           value: false,
           labelName: "Другое",
-          name: "other",
+          id: 7,
         },
       ],
     };

@@ -112,4 +112,10 @@ body {
       font-style: italic;
     }
   }
+  &__error-text {
+    font-size: 12px;
+    line-height: 12px;
+    color: var(--red);
+    opacity: 0.8;
+  }
 }

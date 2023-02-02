@@ -33,8 +33,10 @@
         </div>
       </div>
     </div>
-    <!-- v-if="showModal" -->
-    <BaseModal v-if="showModal" @closeModal="showModal = false" :green="true"
+    <BaseModal
+      v-if="showSroModal"
+      @closeModal="SET_SRO_MODAL(false)"
+      :green="true"
       ><RequestModalForm
         requestModalTitle="Какое СРО Вам необходимо?"
         :requestModalItems="requestModalItems"
@@ -46,12 +48,12 @@
 import LongButton from "@/ui/LongButton";
 import BaseModal from "@/ui/BaseModal.vue";
 import RequestModalForm from "@/shared/RequestModalForm.vue";
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "RegisterSection",
   components: { LongButton, BaseModal, RequestModalForm },
   data() {
     return {
-      showModal: false,
       advantages: [
         {
           text: "Работаем со СРО, имеющими статус с 2009 года и прошедшими все проверки Ростехнадзора",
@@ -78,19 +80,23 @@ export default {
         {
           value: false,
           labelName: "Строительное СРО",
-          name: "build_sro",
+          id: 1,
         },
         {
           value: false,
           labelName: "СРО проектировщиков",
-          name: "project_sro",
+          id: 2,
         },
       ],
     };
   },
+  computed: {
+    ...mapState("requestModal", ["showSroModal"]),
+  },
   methods: {
+    ...mapMutations("requestModal", ["SET_SRO_MODAL"]),
     onAskPriceClick() {
-      this.showModal = true;
+      this.SET_SRO_MODAL(true);
     },
   },
 };
