@@ -6,12 +6,14 @@
         Оставьте номер, чтобы получить персональное коммерческое предложение
       </h3>
       <form ref="form" @submit.prevent="onSendForm" class="service-modal__form">
-        <div class="service-modal__input-container">
+        <div
+          class="service-modal__input-container"
+          :class="{ 'service-modal__input-container--error': fieldError }"
+        >
           <input
             type="text"
             name="user_contact"
             class="common__input service-modal__input"
-            :class="{ 'service-modal__input--error': fieldError }"
             placeholder="+7(9XX) XXX-XX-XX"
             v-mask="'+7(9##) ###-##-##'"
             v-model="$v.contact.$model"
@@ -132,13 +134,16 @@ export default {
     padding: 10px;
   }
   &__title {
-    font-size: 20px;
+    font-size: 25px;
     letter-spacing: 1px;
     line-height: 1.1;
     font-weight: 600;
     margin-bottom: 30px;
     color: var(--gray-dark);
     opacity: 0.8;
+    @media only screen and (max-width: $xl) {
+      font-size: 20px;
+    }
   }
   &__h3 {
     margin-left: 15px;
@@ -162,17 +167,18 @@ export default {
   &__input {
     padding-left: 40px;
     border-radius: 4px;
-    margin-bottom: 25px;
-    &--error {
-      margin-bottom: 0;
-    }
   }
   &__button {
-    height: 100%;
+    height: 44px;
+    @media only screen and (max-width: $sm) {
+      margin-bottom: 27px;
+      width: 100%;
+    }
   }
   &__input-container {
     position: relative;
     margin-right: 30px;
+    margin-bottom: 27px;
     &::before {
       content: url("@/assets/img/phone-gray.svg");
       position: absolute;
@@ -180,11 +186,26 @@ export default {
       width: 20px;
       left: 0;
       bottom: 50%;
-      transform: translate(50%, 50%);
+      transform: translate(55%, 50%);
+    }
+    &--error {
+      margin-bottom: 0;
+      &::before {
+        transform: translate(55%, calc(50% - 14px));
+      }
+    }
+    @media only screen and (max-width: $sm) {
+      margin-right: 0;
+      &::before {
+        transform: translate(55%, 50%);
+      }
     }
   }
   &__form {
     display: flex;
+    @media only screen and (max-width: $sm) {
+      display: block;
+    }
   }
 }
 </style>
