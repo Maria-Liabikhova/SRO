@@ -3,18 +3,25 @@
     <div
       v-scroll-lock="true"
       class="base-modal__backdrop"
-      :class="{ 'base-modal__backdrop--visible': baseModal }"
+      :class="{
+        'base-modal__backdrop--visible': baseModal,
+      }"
       @click="$emit('closeModal')"
     >
-      <div class="base-modal" @click.stop>
+      <div
+        class="base-modal"
+        :class="{ 'base-modal--green': green }"
+        @click.stop
+      >
         <button
           class="common__button base-modal__button"
+          :class="{ 'base-modal__button--green': green }"
           type="button"
           @click="$emit('closeModal')"
         >
           <img class="base-modal__icon" src="@/assets/img/cross.svg" />
         </button>
-        <slot @closeModal="$emit('closeModal')"></slot>
+        <slot></slot>
       </div>
     </div>
   </transition>
@@ -22,6 +29,12 @@
 <script>
 export default {
   name: "BaseModal",
+  props: {
+    green: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       baseModal: false,
@@ -51,6 +64,9 @@ export default {
   @media only screen and (max-width: $md) {
     width: 80vw;
     padding: 20px;
+  }
+  &--green {
+    background-color: var(--turquoise);
   }
   &__backdrop {
     opacity: 0.5;
@@ -91,6 +107,14 @@ export default {
     opacity: 0.7;
     &:hover {
       opacity: 1;
+      box-shadow: 4px 4px 8px -1px var(--gray);
+    }
+    &--green {
+      background-color: var(--white);
+      opacity: 0.9;
+      &:hover {
+        box-shadow: 4px 4px 8px -1px var(--turquoise-dark);
+      }
     }
   }
 }

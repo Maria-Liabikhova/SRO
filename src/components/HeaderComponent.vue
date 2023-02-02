@@ -15,18 +15,27 @@
               :img="require('@/assets/img/telegram.svg')"
               linkTo="https://telegram.me/+79219610320"
             />
+            <RoundLink
+              class="header__icon"
+              :img="require('@/assets/img/phone.svg')"
+              linkTo="tel:+79219610320"
+            />
           </div>
           <a href="tel:+79219610320" class="common__link header__link">
             +7(921)961-03-20</a
           >
-          <div class="header__btn-wrapper">
-            <LongButton name="Оставить заявку" @onClick="showModal = true" />
-          </div>
+
+          <LongButton
+            name="Оставить заявку"
+            @onClick="SET_REQUEST_MODAL(true)"
+          />
         </div>
       </div>
     </div>
-    <BaseModal v-if="showModal" @closeModal="showModal = false"
+    <BaseModal v-if="showRequestModal" @closeModal="SET_REQUEST_MODAL(false)"
       ><RequestModalForm
+        requestModalTitle="Оставить заявку"
+        :requestModalItems="requestModalItems"
     /></BaseModal>
   </div>
 </template>
@@ -34,15 +43,58 @@
 <script>
 import RoundLink from "@/ui/RoundLink";
 import LongButton from "@/ui/LongButton";
-import BaseModal from "@/shared/BaseModal.vue";
+import BaseModal from "@/ui/BaseModal.vue";
 import RequestModalForm from "@/shared/RequestModalForm.vue";
+import { mapMutations, mapState } from "vuex";
 export default {
   name: "HeaderComponent",
   components: { RoundLink, LongButton, BaseModal, RequestModalForm },
   data() {
     return {
-      showModal: false,
+      requestModalItems: [
+        {
+          value: false,
+          labelName: "Вступление в СРО",
+          name: "join_sro",
+        },
+        {
+          value: false,
+          labelName: "Внесение специалистов в НРС",
+          name: "add_nrc",
+        },
+        {
+          value: false,
+          labelName: "Повышение квалификации руководителей и специалистов",
+          name: "study",
+        },
+        {
+          value: false,
+          labelName: "Сертификация ISO 9001",
+          name: "certify",
+        },
+        {
+          value: false,
+          labelName: "Оценка опыта и деловой репутации",
+          name: "reputation",
+        },
+        {
+          value: false,
+          labelName: "Независимая оценка квалификации",
+          name: "assessment",
+        },
+        {
+          value: false,
+          labelName: "Другое",
+          name: "other",
+        },
+      ],
     };
+  },
+  computed: {
+    ...mapState("requestModal", ["showRequestModal"]),
+  },
+  methods: {
+    ...mapMutations("requestModal", ["SET_REQUEST_MODAL"]),
   },
 };
 </script>
@@ -58,7 +110,7 @@ export default {
   &__container {
     display: flex;
     width: 100%;
-    @media only screen and (max-width: $sm) {
+    @media only screen and (max-width: $md) {
       display: inline-block;
     }
   }
@@ -77,7 +129,7 @@ export default {
     margin-left: auto;
     justify-content: space-between;
     @media only screen and (max-width: $md) {
-      justify-content: flex-end;
+      justify-content: space-around;
     }
   }
   &__link-wrapper {
@@ -103,12 +155,17 @@ export default {
     @media only screen and (max-width: $md) {
       font-weight: 600;
       font-size: 16px;
-      margin: 0;
+      margin-left: 0;
+      margin-right: 10px;
+    }
+    @media only screen and (max-width: $sm) {
+      display: none;
     }
   }
-  &__btn-wrapper {
-    @media only screen and (max-width: $md) {
-      display: none;
+  &__icon {
+    display: none;
+    @media only screen and (max-width: $sm) {
+      display: flex;
     }
   }
 }

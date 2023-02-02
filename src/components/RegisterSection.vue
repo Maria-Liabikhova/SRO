@@ -13,7 +13,7 @@
           </p>
           <div class="register__button-wrapper">
             <LongButton
-              name="Запросить стоимость СРО"
+              name="Запросить стоимость вступления СРО"
               @onClick="onAskPriceClick"
             />
           </div>
@@ -33,15 +33,18 @@
         </div>
       </div>
     </div>
-    <BaseModal v-if="showModal" @closeModal="showModal = false"
+    <!-- v-if="showModal" -->
+    <BaseModal v-if="showModal" @closeModal="showModal = false" :green="true"
       ><RequestModalForm
+        requestModalTitle="Какое СРО Вам необходимо?"
+        :requestModalItems="requestModalItems"
     /></BaseModal>
   </section>
 </template>
 
 <script>
 import LongButton from "@/ui/LongButton";
-import BaseModal from "@/shared/BaseModal.vue";
+import BaseModal from "@/ui/BaseModal.vue";
 import RequestModalForm from "@/shared/RequestModalForm.vue";
 export default {
   name: "RegisterSection",
@@ -51,7 +54,7 @@ export default {
       showModal: false,
       advantages: [
         {
-          text: "Работаем с СРО, имеющими статус с 2009 года и прошедшими все проверки Ростехнадзора",
+          text: "Работаем со СРО, имеющими статус с 2009 года и прошедшими все проверки Ростехнадзора",
           icon: require("@/assets/img/scale.svg"),
         },
         {
@@ -71,6 +74,18 @@ export default {
           icon: require("@/assets/img/handshake.svg"),
         },
       ],
+      requestModalItems: [
+        {
+          value: false,
+          labelName: "Строительное СРО",
+          name: "build_sro",
+        },
+        {
+          value: false,
+          labelName: "СРО проектировщиков",
+          name: "project_sro",
+        },
+      ],
     };
   },
   methods: {
@@ -88,10 +103,7 @@ $offset-lg: 30px;
   margin-top: 70px; //header height
   background-color: var(--white);
   @media only screen and (max-width: $md) {
-    margin-top: 50px; //header height
-  }
-  @media only screen and (max-width: $sm) {
-    margin-top: 81px; //header height
+    margin-top: 95px; //header height
   }
   &__container {
     background-color: var(--light-blue);

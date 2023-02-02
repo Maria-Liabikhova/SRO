@@ -2,7 +2,7 @@
   <section class="services">
     <div class="common__container">
       <h1 class="services__title">
-        МЦЭИС<br />
+        МЦЭиС<br />
         оказывает <span class="services__title--yellow"> услуги </span> по всей
         России
       </h1>
@@ -23,18 +23,16 @@
         </div>
       </div>
     </div>
-    <BaseModal v-if="showModal" @closeModal="showModal = false"
-      ><RequestModalForm
-    /></BaseModal>
+    <BaseModal v-if="showModal" @closeModal="showModal = false"></BaseModal>
   </section>
 </template>
 
 <script>
-import BaseModal from "@/shared/BaseModal.vue";
-import RequestModalForm from "@/shared/RequestModalForm.vue";
+import BaseModal from "@/ui/BaseModal.vue";
+// import RequestModalForm from "@/shared/RequestModalForm.vue";
 export default {
-  name: "ServicesSectin",
-  components: { BaseModal, RequestModalForm },
+  name: "ServicesSection",
+  components: { BaseModal },
   data() {
     return {
       showModal: false,
@@ -123,12 +121,14 @@ export default {
   justify-content: space-between;
   border: 1px solid var(--white);
   padding: 25px;
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease;
   border-radius: 4px;
   &:hover {
     box-shadow: 5px 5px 15px var(--white);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: box-shadow 0.3s ease;
+    padding: 24px;
+    border: 2px solid var(--white);
   }
   @media only screen and (max-width: $lg) {
     padding: 20px;

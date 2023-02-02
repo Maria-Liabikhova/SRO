@@ -2,17 +2,17 @@
   <div>
     <HeaderComponent />
     <RegisterSection />
-    <ServicesSectin />
+    <ServicesSection />
   </div>
 </template>
 
 <script>
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import RegisterSection from "@/components/RegisterSection.vue";
-import ServicesSectin from "@/components/ServicesSectin.vue";
+import ServicesSection from "@/components/ServicesSection.vue";
 export default {
   name: "HomePage",
-  components: { HeaderComponent, RegisterSection, ServicesSectin },
+  components: { HeaderComponent, RegisterSection, ServicesSection },
 };
 </script>
 

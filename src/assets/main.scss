@@ -90,4 +90,26 @@ body {
       font-size: 18px;
     }
   }
+  &__input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: var(--gray-dark);
+    border-radius: 4px;
+    background-color: var(--light-blue);
+    border: 1px solid var(--white);
+    &:focus {
+      outline: none;
+      border: 1px solid var(--gray);
+    }
+    @media only screen and (max-width: $md) {
+      padding: 10px;
+    }
+  }
+  &__text {
+    &--italic {
+      color: var(--gray);
+      font-style: italic;
+    }
+  }
 }
