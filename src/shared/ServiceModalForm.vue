@@ -6,29 +6,12 @@
         Оставьте номер, чтобы получить персональное коммерческое предложение
       </h3>
       <form ref="form" @submit.prevent="onSendForm" class="service-modal__form">
-        <div
-          class="service-modal__input-container"
-          :class="{ 'service-modal__input-container--error': fieldError }"
-        >
-          <input
-            type="text"
-            name="user_contact"
-            class="common__input service-modal__input"
-            placeholder="+7(9XX) XXX-XX-XX"
-            v-mask="'+7(9##) ###-##-##'"
-            v-model="$v.contact.$model"
-            @focus="fieldFocused = true"
-            @blur="onFieldBlur"
-          />
-          <input
-            name="service"
-            style="display: none"
-            :value="requestModalTitle"
-          />
-          <p v-if="fieldError" class="common__error-text">
-            {{ getErrorText }}
-          </p>
-        </div>
+        <SharedInputs :phoneInput="true" @onFieldBlur="setFieldValidation" />
+        <input
+          name="service"
+          style="display: none"
+          :value="requestModalTitle"
+        />
         <LongButton
           class="service-modal__button"
           name="Получить КП"
@@ -54,9 +37,9 @@ import LongButton from "@/ui/LongButton.vue";
 import PrivacyPolicyModalForm from "@/shared/PrivacyPolicyModalForm.vue";
 import BaseModal from "@/ui/BaseModal.vue";
 import AgreementText from "@/shared/AgreementText.vue";
+import SharedInputs from "@/shared/SharedInputs.vue";
 import send from "@/mixins/sendFormToEmail";
 import { mapMutations } from "vuex";
-import { required, minLength } from "vuelidate/lib/validators";
 export default {
   name: "ServiceModalForm",
   components: {
@@ -64,6 +47,7 @@ export default {
     PrivacyPolicyModalForm,
     BaseModal,
     AgreementText,
+    SharedInputs,
   },
   props: {
     requestModalTitle: {
@@ -77,27 +61,8 @@ export default {
       showPolicyModal: false,
       showResultModal: false,
       resultInfo: "",
-      contact: "",
-      fieldFocused: false,
+      fieldInvalid: true,
     };
-  },
-  validations: {
-    contact: {
-      required,
-      minLength: minLength(16),
-    },
-  },
-  computed: {
-    fieldError() {
-      return (
-        this.$v.contact.$dirty && this.$v.contact.$error && !this.fieldFocused
-      );
-    },
-    getErrorText() {
-      return !this.$v.contact.required
-        ? "Поле обязательно для ввода"
-        : `Введите корректные данные`;
-    },
   },
   methods: {
     ...mapMutations("requestModal", ["SET_SERVICE_MODAL"]),
@@ -108,14 +73,11 @@ export default {
         this.showResultModal = false;
       }, 3000);
     },
-    onFieldBlur() {
-      this.fieldFocused = false;
-      this.$v.contact.$touch();
+    setFieldValidation(v) {
+      this.fieldInvalid = v.invalid;
     },
     onSendForm() {
-      this.$v.contact.$touch();
-      console.log(this.$refs.form);
-      if (!this.fieldError) {
+      if (!this.fieldInvalid) {
         this.send(this.$refs.form);
       }
     },
@@ -164,41 +126,11 @@ export default {
       background-color: var(--gray-pail);
     }
   }
-  &__input {
-    padding-left: 40px;
-    border-radius: 4px;
-  }
   &__button {
     height: 44px;
     @media only screen and (max-width: $sm) {
       margin-bottom: 27px;
       width: 100%;
-    }
-  }
-  &__input-container {
-    position: relative;
-    margin-right: 30px;
-    margin-bottom: 27px;
-    &::before {
-      content: url("@/assets/img/phone-gray.svg");
-      position: absolute;
-      height: 20px;
-      width: 20px;
-      left: 0;
-      bottom: 50%;
-      transform: translate(55%, 50%);
-    }
-    &--error {
-      margin-bottom: 0;
-      &::before {
-        transform: translate(55%, calc(50% - 14px));
-      }
-    }
-    @media only screen and (max-width: $sm) {
-      margin-right: 0;
-      &::before {
-        transform: translate(55%, 50%);
-      }
     }
   }
   &__form {

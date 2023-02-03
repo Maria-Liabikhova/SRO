@@ -14,7 +14,8 @@
             @onInput="onCheckBoxInput(item)"
           />
         </div>
-        <RequestModalInputs @onFieldBlur="onFieldBlur" />
+        <SharedInputs :nameInput="true" @onFieldBlur="setFieldValidation" />
+        <SharedInputs :contactInput="true" @onFieldBlur="setFieldValidation" />
         <div class="request__action-wrap">
           <SquareButton
             name="Отправить"
@@ -43,7 +44,7 @@ import CheckBox from "@/ui/CheckBox.vue";
 import PrivacyPolicyModalForm from "@/shared/PrivacyPolicyModalForm.vue";
 import BaseModal from "@/ui/BaseModal.vue";
 import AgreementText from "@/shared/AgreementText.vue";
-import RequestModalInputs from "@/shared/RequestModalInputs.vue";
+import SharedInputs from "@/shared/SharedInputs.vue";
 import send from "@/mixins/sendFormToEmail";
 import { mapMutations, mapState } from "vuex";
 export default {
@@ -53,7 +54,7 @@ export default {
     PrivacyPolicyModalForm,
     BaseModal,
     AgreementText,
-    RequestModalInputs,
+    SharedInputs,
     CheckBox,
   },
   props: {
@@ -71,7 +72,8 @@ export default {
     return {
       showPolicyModal: false,
       showResultModal: false,
-      fieldsInvalid: true,
+      nameFieldInvalid: true,
+      contactFieldInvalid: true,
       resultInfo: "",
     };
   },
@@ -95,11 +97,11 @@ export default {
         this.showResultModal = false;
       }, 3000);
     },
-    onFieldBlur(v) {
-      this.fieldsInvalid = v;
+    setFieldValidation(v) {
+      this[`${v.fieldName}FieldInvalid`] = v.invalid;
     },
     onSendForm() {
-      if (!this.fieldsInvalid) {
+      if (!this.contactFieldInvalid && !this.nameFieldInvalid) {
         this.send(this.$refs.form);
       }
     },

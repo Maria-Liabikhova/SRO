@@ -1,5 +1,5 @@
 <template>
-  <section class="services">
+  <section class="services common__container-wrapper">
     <div class="common__container">
       <h1 class="services__title">
         МЦЭиС<br />
@@ -88,18 +88,7 @@ export default {
 
 <style scoped lang="scss">
 .services {
-  width: 100%;
   background-color: var(--violet);
-  padding: 80px 60px;
-  @media only screen and (max-width: $lg) {
-    padding: 60px 50px;
-  }
-  @media only screen and (max-width: $md) {
-    padding: 40px 30px;
-  }
-  @media only screen and (max-width: $sm) {
-    padding: 30px 20px;
-  }
   &__title {
     color: var(--white);
     font-size: 40px;
@@ -108,6 +97,7 @@ export default {
     text-align: center;
     font-style: normal;
     font-weight: 600;
+    font-family: "Roboto";
     @media only screen and (max-width: $lg) {
       font-size: 32px;
     }
@@ -142,9 +132,6 @@ export default {
     transition: box-shadow 0.3s ease;
     padding: 24px;
     border: 2px solid var(--white);
-  }
-  @media only screen and (max-width: $lg) {
-    padding: 20px;
   }
   &__wrapper {
     display: grid;

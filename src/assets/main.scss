@@ -7,6 +7,7 @@ body {
   font-family: $default-font;
   font-weight: 400;
   overflow-x: hidden;
+  color: var(--gray-dark);
   @media only screen and (max-width: $lg) {
     font-size: 16px;
   }
@@ -22,6 +23,19 @@ body {
   }
 }
 .common {
+  &__container-wrapper {
+    width: 100%;
+    padding: 80px 60px;
+    @media only screen and (max-width: $lg) {
+      padding: 60px 50px;
+    }
+    @media only screen and (max-width: $md) {
+      padding: 40px 30px;
+    }
+    @media only screen and (max-width: $sm) {
+      padding: 30px 20px;
+    }
+  }
   &__container {
     // border: 1px dashed red;
     width: 100%;
@@ -71,10 +85,10 @@ body {
     }
   }
   &__h2 {
-    font-family: "Peta";
+    font-family: "Roboto";
     text-transform: uppercase;
     font-size: 38px;
-    letter-spacing: -2px;
+    letter-spacing: 1px;
     line-height: 50px;
     @media only screen and (max-width: $lg) {
       font-size: 28px;
@@ -90,13 +104,41 @@ body {
       font-size: 18px;
     }
   }
+  &__h3 {
+    font-size: 40px;
+    line-height: 1.2;
+    font-weight: 500;
+    @media only screen and (max-width: $lg) {
+      font-size: 35px;
+    }
+    @media only screen and (max-width: $md) {
+      font-size: 20px;
+    }
+    @media only screen and (max-width: $sm) {
+      font-size: 18px;
+    }
+  }
+  &__h4 {
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 500;
+    @media only screen and (max-width: $lg) {
+      // font-size: 35px;
+    }
+    @media only screen and (max-width: $md) {
+      font-size: 18px;
+    }
+    // @media only screen and (max-width: $sm) {
+    //   font-size: 16px;
+    // }
+  }
   &__input {
     width: 100%;
     padding: 12px;
     font-size: 16px;
     color: var(--gray-dark);
     border-radius: 4px;
-    background-color: var(--light-blue);
+    background-color: var(--light-gray);
     border: 1px solid var(--white);
     &:focus {
       outline: none;

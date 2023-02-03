@@ -18,7 +18,7 @@
             />
           </div>
         </div>
-        <div class="register__img-wrapper"></div>
+        <ImgContent />
       </div>
     </div>
     <div class="common__container advantages__container">
@@ -48,10 +48,11 @@
 import LongButton from "@/ui/LongButton";
 import BaseModal from "@/ui/BaseModal.vue";
 import RequestModalForm from "@/shared/RequestModalForm.vue";
+import ImgContent from "@/shared/ImgContent.vue";
 import { mapMutations, mapState } from "vuex";
 export default {
   name: "RegisterSection",
-  components: { LongButton, BaseModal, RequestModalForm },
+  components: { LongButton, BaseModal, RequestModalForm, ImgContent },
   data() {
     return {
       advantages: [
@@ -112,7 +113,7 @@ $offset-lg: 30px;
     margin-top: 95px; //header height
   }
   &__container {
-    background-color: var(--light-blue);
+    background-color: var(--light-gray);
     display: flex;
     border-radius: 25px;
     height: auto;
@@ -165,15 +166,6 @@ $offset-lg: 30px;
       margin-right: 10px;
       padding-top: 10px;
     }
-  }
-  &__img-wrapper {
-    background-image: url(@/assets/img/yellow.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    flex: 1;
-    overflow: hidden;
-    position: relative;
   }
   &__button-wrapper {
     margin-bottom: 50px;
@@ -234,7 +226,7 @@ $offset-lg: 30px;
     @media only screen and (max-width: $sm) {
       min-width: 120px;
       padding: 15px 5px;
-      border: 0.1px solid var(--light-blue);
+      border: 0.1px solid var(--light-gray);
       border-radius: 4px;
       background-color: var(--white);
       margin-bottom: 5px;
