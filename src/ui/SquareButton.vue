@@ -1,6 +1,7 @@
 <template>
   <button
-    class="square-button common__button"
+    class="common__button square-button"
+    :class="{ 'square-button--yellow': yellow }"
     :type="type"
     @click="$emit('onClick')"
   >
@@ -11,7 +12,7 @@
 <script>
 export default {
   name: "SquareButton",
-  props: ["name", "type"],
+  props: ["name", "type", "yellow"],
 };
 </script>
 
@@ -29,6 +30,15 @@ export default {
   }
   @media only screen and (max-width: $md) {
     font-size: 14px;
+  }
+  &--yellow {
+    background-color: var(--yellow);
+    color: var(--gray-dark);
+    font-weight: bold;
+    &:hover {
+      background-color: var(--yellow-dark);
+      box-shadow: 4px 4px 8px -1px var(--yellow-dark);
+    }
   }
 }
 </style>

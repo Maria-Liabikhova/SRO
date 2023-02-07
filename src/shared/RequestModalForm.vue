@@ -22,17 +22,18 @@
             class="request__button"
             type="submit"
           />
-          <AgreementText @onClick="onShowPolicyModal" />
+          <AgreementText @onClick="showPolicyModal = true" />
         </div>
       </form>
     </div>
-    <BaseModal v-if="showPolicyModal" @closeModal="showPolicyModal = false"
+    <BaseModal
+      v-if="showPolicyModal && !showResultModal"
+      @closeModal="showPolicyModal = false"
       ><PrivacyPolicyModalForm
     /></BaseModal>
     <p
       v-if="showResultModal"
-      class="request-result common__text--italic"
-      @closeModal="$emit('closeModal')"
+      class="common__request-result common__text--italic"
       v-html="resultInfo"
     ></p>
   </div>
@@ -68,15 +69,6 @@ export default {
     },
   },
   mixins: [send],
-  data() {
-    return {
-      showPolicyModal: false,
-      showResultModal: false,
-      nameFieldInvalid: true,
-      contactFieldInvalid: true,
-      resultInfo: "",
-    };
-  },
   computed: {
     ...mapState("requestModal", ["showSroModal", "showRequestModal"]),
   },
@@ -96,19 +88,6 @@ export default {
         }
         this.showResultModal = false;
       }, 3000);
-    },
-    setFieldValidation(v) {
-      this[`${v.fieldName}FieldInvalid`] = v.invalid;
-    },
-    onSendForm() {
-      if (!this.contactFieldInvalid && !this.nameFieldInvalid) {
-        this.send(this.$refs.form);
-      }
-    },
-    onShowPolicyModal() {
-      if (!this.showResultModal) {
-        this.showPolicyModal = true;
-      }
     },
   },
 };
@@ -153,19 +132,6 @@ export default {
     @media only screen and (max-width: $md) {
       margin-bottom: 25px;
     }
-  }
-}
-.request-result {
-  text-align: center;
-  padding: 20px 50px;
-  font-size: 20px;
-  @media only screen and (max-width: $lg) {
-    padding: 10px 25px;
-    font-size: 16px;
-  }
-  @media only screen and (max-width: $sm) {
-    padding: 5px 5px;
-    font-size: 14px;
   }
 }
 </style>

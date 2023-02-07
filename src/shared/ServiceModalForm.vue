@@ -5,8 +5,16 @@
       <h3 class="service-modal__h3">
         Оставьте номер, чтобы получить персональное коммерческое предложение
       </h3>
-      <form ref="form" @submit.prevent="onSendForm" class="service-modal__form">
-        <SharedInputs :phoneInput="true" @onFieldBlur="setFieldValidation" />
+      <form
+        ref="form"
+        @submit.prevent="onSendPhone"
+        class="service-modal__form"
+      >
+        <SharedInputs
+          :phoneInput="true"
+          @onFieldBlur="setFieldValidation"
+          class="service-modal__phone-input"
+        />
         <input
           name="service"
           style="display: none"
@@ -25,8 +33,7 @@
     /></BaseModal>
     <p
       v-if="showResultModal"
-      class="common__text--italic"
-      @closeModal="$emit('closeModal')"
+      class="common__request-result common__text--italic"
       v-html="resultInfo"
     ></p>
   </div>
@@ -56,14 +63,6 @@ export default {
     },
   },
   mixins: [send],
-  data() {
-    return {
-      showPolicyModal: false,
-      showResultModal: false,
-      resultInfo: "",
-      fieldInvalid: true,
-    };
-  },
   methods: {
     ...mapMutations("requestModal", ["SET_SERVICE_MODAL"]),
     showResultContent() {
@@ -73,11 +72,8 @@ export default {
         this.showResultModal = false;
       }, 3000);
     },
-    setFieldValidation(v) {
-      this.fieldInvalid = v.invalid;
-    },
-    onSendForm() {
-      if (!this.fieldInvalid) {
+    onSendPhone() {
+      if (!this.contactFieldInvalid) {
         this.send(this.$refs.form);
       }
     },
@@ -137,6 +133,12 @@ export default {
     display: flex;
     @media only screen and (max-width: $sm) {
       display: block;
+    }
+  }
+  &__phone-input {
+    margin-right: 30px;
+    @media only screen and (max-width: $lg) {
+      margin-right: 20px;
     }
   }
 }

@@ -22,6 +22,9 @@ export default {
     font-size: 14px;
     line-height: 1.2;
   }
+  @media only screen and (max-width: $sm) {
+    font-size: 12px;
+  }
   &__icon {
     height: 15px;
     width: 15px;

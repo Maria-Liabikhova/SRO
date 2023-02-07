@@ -3,7 +3,13 @@
     <input
       v-if="nameInput"
       class="common__input input"
-      :class="{ 'input--error': nameFieldError }"
+      :class="[
+        {
+          'input--error': nameFieldError,
+        },
+        { 'input--white': white },
+        { 'common__input--small': small },
+      ]"
       type="text"
       placeholder="Ваше имя"
       name="user_name"
@@ -22,7 +28,11 @@
       type="text"
       name="user_contact"
       class="common__input input"
-      :class="{ 'input--error': contactFieldError }"
+      :class="[
+        { 'input--error': contactFieldError },
+        { 'input--white': white },
+        { 'common__input--small': small },
+      ]"
       placeholder="Ваш телефон/e-mail"
       v-model="$v.contact.$model"
       @blur="onFieldBlur('contact')"
@@ -34,12 +44,20 @@
     >
       {{ getContactErrorText($v.contact) }}
     </p>
-    <div v-if="phoneInput" class="phone-input__container">
+    <div
+      v-if="phoneInput"
+      class="phone-input__container"
+      :class="{ 'phone-input__container--small': small }"
+    >
       <input
         type="text"
         name="user_contact"
         class="common__input phone-input"
-        :class="{ 'phone-input--error': contactFieldError }"
+        :class="[
+          { 'phone-input--error': contactFieldError },
+          { 'input--white': white },
+          { 'common__input--small': small },
+        ]"
         placeholder="+7(9XX) XXX-XX-XX"
         v-mask="'+7(9##) ###-##-##'"
         v-model="$v.contact.$model"
@@ -60,6 +78,7 @@ import {
   maxLength,
   email,
 } from "vuelidate/lib/validators";
+import { mapState } from "vuex";
 export default {
   name: "SharedInputs",
   props: {
@@ -72,6 +91,14 @@ export default {
       default: false,
     },
     phoneInput: {
+      type: Boolean,
+      default: false,
+    },
+    white: {
+      type: Boolean,
+      default: false,
+    },
+    small: {
       type: Boolean,
       default: false,
     },
@@ -122,6 +149,7 @@ export default {
         };
   },
   computed: {
+    ...mapState("sharedComponents", ["clearInput"]),
     nameFieldError() {
       return this.checkInputValid("name");
     },
@@ -155,6 +183,19 @@ export default {
       if (!v.phoneFormat || !v.email) return `Введите корректные данные`;
     },
   },
+  watch: {
+    clearInput(v) {
+      if (v) {
+        if (this.name.length > 0) {
+          this.name = "";
+        }
+        if (this.contact.length > 0) {
+          this.contact = "";
+        }
+        this.$v.$reset();
+      }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -163,11 +204,16 @@ export default {
   &--error {
     margin-bottom: 0;
   }
+  &--white {
+    background-color: var(--white);
+    &:focus {
+      border: 1px solid var(--white);
+    }
+  }
 }
 .input__spase {
   margin-bottom: 13px;
 }
-
 .phone-input {
   padding-left: 40px;
   border-radius: 4px;
@@ -177,10 +223,6 @@ export default {
   }
   &__container {
     position: relative;
-    margin-right: 30px;
-    @media only screen and (max-width: $lg) {
-      margin-right: 20px;
-    }
     &::before {
       content: url("@/assets/img/phone-gray.svg");
       position: absolute;
@@ -199,6 +241,32 @@ export default {
       margin-right: 0;
       &::before {
         transform: translate(55%, 50%);
+      }
+    }
+    &--small {
+      &::before {
+        content: "";
+        height: 0px;
+        width: 0px;
+      }
+      &::after {
+        content: url("@/assets/img/phone-gray.svg");
+        position: absolute;
+        height: 17px;
+        width: 17px;
+        left: 0;
+        top: 0;
+        transform: translate(55%, calc(50% + 2px));
+      }
+      @media only screen and (max-width: $md) {
+        &::after {
+          transform: translate(55%, calc(50% + 3px));
+        }
+      }
+      @media only screen and (max-width: $sm) {
+        &::after {
+          transform: translate(55%, calc(50% + 2px));
+        }
       }
     }
   }

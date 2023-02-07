@@ -1,5 +1,14 @@
 import emailjs from "@emailjs/browser";
 export default {
+  data() {
+    return {
+      nameFieldInvalid: true,
+      contactFieldInvalid: true,
+      showPolicyModal: false,
+      showResultModal: false,
+      resultInfo: "",
+    };
+  },
   methods: {
     send(v) {
       emailjs
@@ -18,6 +27,14 @@ export default {
             this.showResultContent();
           }
         );
+    },
+    setFieldValidation(v) {
+      this[`${v.fieldName}FieldInvalid`] = v.invalid;
+    },
+    onSendForm() {
+      if (!this.contactFieldInvalid && !this.nameFieldInvalid) {
+        this.send(this.$refs.form);
+      }
     },
   },
 };

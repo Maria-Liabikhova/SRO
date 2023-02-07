@@ -72,6 +72,10 @@ export default defineComponent({
     color: var(--gray);
     line-height: 1.2;
     font-size: 18px;
+    @media only screen and (max-width: $sm) {
+      font-size: 14px;
+      line-height: 1;
+    }
   }
 }
 </style>
