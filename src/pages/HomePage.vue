@@ -4,6 +4,7 @@
     <RegisterSection />
     <ServicesSection />
     <ConsultationSection />
+    <ReviewsSection />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import HeaderComponent from "@/components/HeaderComponent.vue";
 import RegisterSection from "@/components/RegisterSection.vue";
 import ServicesSection from "@/components/ServicesSection.vue";
 import ConsultationSection from "@/components/ConsultationSection.vue";
+import ReviewsSection from "@/components/ReviewsSection.vue";
 export default {
   name: "HomePage",
   components: {
@@ -19,6 +21,7 @@ export default {
     RegisterSection,
     ServicesSection,
     ConsultationSection,
+    ReviewsSection,
   },
 };
 </script>

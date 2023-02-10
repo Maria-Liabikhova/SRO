@@ -80,7 +80,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 1000;
     &--visible {
       opacity: 1;
       transition: all 0.3s ease;

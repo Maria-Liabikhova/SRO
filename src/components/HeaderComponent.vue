@@ -106,7 +106,7 @@ export default {
   top: 0;
   background-color: var(--white);
   position: fixed;
-  z-index: 1;
+  z-index: 999;
   &__container {
     display: flex;
     width: 100%;

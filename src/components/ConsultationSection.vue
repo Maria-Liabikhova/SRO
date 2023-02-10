@@ -28,7 +28,11 @@
             @onClick="showPolicyModal = true"
             class="consultation__agreement-text"
           />
-          <SquareButton name="Оставить заявку" type="submit" :yellow="true" />
+          <SquareButton
+            name="Бесплатная консультация"
+            type="submit"
+            :yellow="true"
+          />
         </form>
       </div>
     </div>
