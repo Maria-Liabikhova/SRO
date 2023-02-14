@@ -11,7 +11,6 @@
         :navigation="true"
         :loop="true"
         :speed="1400"
-        class="reviews__swiper-wrapper"
       >
         <swiper-slide
           v-for="item in slides"
@@ -26,7 +25,6 @@
             <img
               :src="require(`@/assets/img/reviews/${item.id}.jpg`)"
               class="reviews__img"
-              :class="{ 'reviews__img--down': item.id % 2 == 0 }"
             />
           </div>
         </swiper-slide>
@@ -47,7 +45,7 @@ export default {
     return {
       slides: [
         {
-          id: 4,
+          id: 2,
           reviewerName:
             "ФГБОУ ВПО Санкт-Петербургский университет ГПС МЧС России",
           text: "«В период работы эксперты-аудиторы центра по сертификации проявили себя квалифицированными и грамотными специалистами. Все аботы по сертификации были проведены в срок, согласно заключенным договорам. Разъяснения и консультации, полученные в ходе работы, экспертов-аудиторов имеют высокое практическое значение»",
@@ -55,24 +53,23 @@ export default {
         {
           id: 1,
           reviewerName: "ООО «ГАЗПРОМНЕФТЬ БИЗНЕС-СЕРВИС»",
-          text: "«Работа специалистов компании ООО «Межрегиональный центр экспертизы и сертификации» заслуживает положительной оценки»",
+          text: "«Специалисты ООО «Межрегиональный центр экспертизы и сертификации» во взаимодействии со специалистами ООО «Газпромнефть Бизнес-сервис» осуществили разработку всех необходимых документов, предусмотренных договором. При разработке документов были учтены как пожелания сотрудников ООО «Газпромнефть Бизнес-сервис» отвечающих за разработку СМК, так и требования ООО «Газпромнефть Бизнес-сервис» к созданию нормативных документов. Требуемый уровень разработанных стандартов, подтвердил при сертификационном аудите орган по сертификации Бюро Веритас.",
         },
         {
-          id: 2,
+          id: 3,
           reviewerName: "ООО «Строительная компания «КорпусСтрой»",
           text: "«Специалисты и эксперты органа по сертификации - 000 «Межрегиональный центр экспертизы и сертификации» (ООО «МЦЭиС») провели весь необходимый комплекс мероприятий по оценке, действующей на предприятии системы менеджмента качества в соответствии с требованиями стандартов и условиями договора. Считаем что проделанная работа ООО «МЦЭиС» заслуживает высокой оценки",
         },
         {
-          id: 3,
+          id: 4,
           reviewerName: "Муниципальное унитарное предприятие «Форт»",
-          text: "«Работа специалистов компании ООО «Межрегиональный центр экспертизы и сертификации» заслуживает самой высокой оценки»",
+          text: "«Эксперты органа по сертификации провели в установленные договором сроки все необходимые сертификационные мероприятия. МУП «Форт» были выданы сертификаты соответствия установленного образца на русском и английском языках. Работа специалистов компании ООО «Межрегиональный центр экспертизы и сертификации» заслуживает самой высокой оценки»",
         },
       ],
     };
   },
 };
 </script>
-<!-- check and clean this code -->
 <style scoped lang="scss">
 .reviews {
   background-color: var(--light-blue);
@@ -92,14 +89,6 @@ export default {
     display: flex;
     @media only screen and (max-width: $sm) {
       position: relative;
-      &::after {
-        content: url(@/assets/img/yellow.png);
-        position: absolute;
-        opacity: 0.2;
-        top: 10%;
-        left: 50%;
-        transform: translate(-50%, 0);
-      }
     }
   }
   &__text-content {
@@ -111,17 +100,6 @@ export default {
   &__img {
     border-radius: 4px;
     margin-left: 100px;
-    transform: rotate(-5deg);
-    border: 2px solid var(--light-blue);
-    @media only screen and (max-width: $md) {
-      transform: rotate(0deg);
-    }
-    &--down {
-      transform: rotate(5deg);
-      @media only screen and (max-width: $md) {
-        transform: rotate(0deg);
-      }
-    }
     @media only screen and (max-width: $lg) {
       margin-left: 50px;
     }
@@ -134,11 +112,14 @@ export default {
     margin-top: 20px;
     flex: 1;
     justify-content: flex-start;
-    height: 320px;
+    height: 370px;
     margin-bottom: 90px;
     background-image: url(@/assets/img/yellow.png);
     background-repeat: no-repeat;
     background-size: contain;
+    @media only screen and (max-width: $xl) {
+      height: 320px;
+    }
     @media only screen and (max-width: $md) {
       height: 200px;
       margin-top: 0px;
