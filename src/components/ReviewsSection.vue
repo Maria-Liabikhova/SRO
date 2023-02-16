@@ -25,24 +25,34 @@
             <img
               :src="require(`@/assets/img/reviews/${item.id}.jpg`)"
               class="reviews__img"
+              @click="onShowImg(item.id)"
             />
           </div>
         </swiper-slide>
       </swiper>
     </div>
+    <BaseModal
+      v-if="showModal"
+      :imgContent="modalImg"
+      @closeModal="showModal = false"
+    >
+    </BaseModal>
   </section>
 </template>
 
 <script>
 import { SwiperCore, Swiper, SwiperSlide } from "swiper-vue2";
 import { Navigation, Pagination } from "swiper";
+import BaseModal from "@/ui/BaseModal.vue";
 SwiperCore.use([Navigation, Pagination]);
 import "swiper/swiper-bundle.css";
 export default {
   name: "ReviewsSection",
-  components: { Swiper, SwiperSlide },
+  components: { Swiper, SwiperSlide, BaseModal },
   data() {
     return {
+      modalImg: "",
+      showModal: false,
       slides: [
         {
           id: 2,
@@ -67,6 +77,12 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    onShowImg(id) {
+      this.modalImg = require(`@/assets/img/reviews/${id}.jpg`);
+      this.showModal = true;
+    },
   },
 };
 </script>
@@ -100,6 +116,7 @@ export default {
   &__img {
     border-radius: 4px;
     margin-left: 100px;
+    cursor: pointer;
     @media only screen and (max-width: $lg) {
       margin-left: 50px;
     }

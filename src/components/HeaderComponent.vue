@@ -21,8 +21,8 @@
               linkTo="tel:+79219610320"
             />
           </div>
-          <a href="tel:+79219610320" class="common__link header__link">
-            +7(921)961-03-20</a
+          <a href="tel:+79219629381" class="common__link header__link">
+            8(812)962-93-81</a
           >
 
           <LongButton

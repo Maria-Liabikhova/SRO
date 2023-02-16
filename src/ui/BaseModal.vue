@@ -9,6 +9,15 @@
       @click="$emit('closeModal')"
     >
       <div
+        v-if="imgContent"
+        class="base-modal__img-wrapper common__img-wrapper"
+        :class="{ 'base-modal__img-wrapper--zoom-in': zoomIn }"
+        @click.stop="zoomIn = !zoomIn"
+      >
+        <img class="common__img" :src="imgContent" />
+      </div>
+      <div
+        v-else
         class="base-modal"
         :class="{ 'base-modal--green': green }"
         @click.stop
@@ -34,10 +43,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    imgContent: {
+      type: String,
+    },
   },
   data() {
     return {
       baseModal: false,
+      zoomIn: false,
     };
   },
   mounted() {
@@ -114,6 +127,29 @@ export default {
       opacity: 0.9;
       &:hover {
         box-shadow: 4px 4px 8px -1px var(--turquoise-dark);
+      }
+    }
+  }
+  &__img-wrapper {
+    height: 70vh;
+    cursor: zoom-in;
+    transition: all 0.3s ease;
+    @media only screen and (max-width: $md) {
+      height: 80vh;
+    }
+    @media only screen and (max-width: $sm) {
+      cursor: auto;
+      height: auto;
+      width: 95vw;
+    }
+    &--zoom-in {
+      transition: all 0.3s ease;
+      cursor: zoom-out;
+      height: 100vh;
+      @media only screen and (max-width: $sm) {
+        cursor: auto;
+        height: auto;
+        width: 95vw;
       }
     }
   }

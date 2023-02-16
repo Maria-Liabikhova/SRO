@@ -206,8 +206,8 @@ $offset-lg: 30px;
     padding-right: 50px;
     padding-left: 50px;
     @media only screen and (max-width: $md) {
-      padding-right: 25px;
-      padding-left: 25px;
+      padding-right: 15px;
+      padding-left: 15px;
     }
   }
   &__item {
