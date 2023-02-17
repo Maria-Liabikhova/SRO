@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <p class="footer__bottom footer__text">OOO «МЦЕиС» 2023</p>
+    <p class="footer__bottom footer__text">OOO «МЦЭиС» 2023</p>
   </section>
 </template>
 

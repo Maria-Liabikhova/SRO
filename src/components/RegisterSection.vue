@@ -80,7 +80,7 @@ export default {
       requestModalItems: [
         {
           value: false,
-          labelName: "Строительное СРО",
+          labelName: "СРО cтроителей",
           id: 1,
         },
         {

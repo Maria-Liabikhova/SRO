@@ -3,8 +3,9 @@
     <div class="common__container">
       <h1 class="services__title">
         МЦЭиС<br />
-        оказывает <span class="services__title--yellow"> услуги </span> по всей
-        России
+        оказывает
+        <span class="services__text services__title--yellow"> услуги </span>
+        &nbsp; по всей России
       </h1>
       <div class="card__wrapper">
         <div
@@ -17,9 +18,11 @@
             <img :src="item.icon" class="card__img" />
             <h4 class="card__title">{{ item.title }}</h4>
           </div>
-          <p class="card__price">
-            <span class="services__title--yellow">От {{ item.price }} руб</span>
-          </p>
+          <span class="card__text-wraper">
+            <p class="services__text card__text">
+              От {{ item.price }} руб
+            </p></span
+          >
         </div>
       </div>
     </div>
@@ -111,11 +114,12 @@ export default {
       margin-top: 0;
     }
     &--yellow {
-      background-color: var(--yellow);
-      color: var(--gray-dark);
-      padding: 0 10px 10px 10px;
-      margin-right: 5px;
+      padding: 0 0 10px 10px;
     }
+  }
+  &__text {
+    background-color: var(--yellow);
+    color: var(--gray-dark);
   }
 }
 .card {
@@ -171,9 +175,13 @@ export default {
       margin-bottom: 30px;
     }
   }
-  &__price {
-    text-align: center;
+  &__text {
+    padding: 10px 10px;
     font-weight: 600;
+    display: inline-block;
+  }
+  &__text-wraper {
+    text-align: center;
   }
 }
 </style>
