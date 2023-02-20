@@ -12,6 +12,7 @@
       :name="name"
       :value="value"
       @input="$emit('onInput')"
+      @click.stop
       :class="{ 'checkbox--hover': mouseOnCheckbox }"
     />
     <label :for="name" class="checkbox__label">
