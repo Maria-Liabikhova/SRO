@@ -3,7 +3,7 @@
     <div class="common__container">
       <div class="footer__container">
         <div class="common__img-wrapper footer__img-wrapper">
-          <img class="common__img" src="@/assets/img/logo_name.svg" />
+          <img class="common__img" src="@/assets/img/logo_white.svg" />
         </div>
         <div class="footer__info-wrapper">
           <p class="footer__text">Общество с ограниченной ответственностью</p>

@@ -75,7 +75,7 @@ export default {
   methods: {
     ...mapMutations("requestModal", ["SET_REQUEST_MODAL", "SET_SRO_MODAL"]),
     onCheckBoxInput(v) {
-      !v.value ? (v.value = v.labelName) : false;
+      v.value = !v.value ? v.labelName : false;
     },
     showResultContent() {
       this.showResultModal = true;

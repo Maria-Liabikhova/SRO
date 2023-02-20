@@ -10,7 +10,7 @@ export default {
 
 <style lang="scss" scoped>
 .img-content {
-  background-image: url(@/assets/img/yellow.png);
+  background-image: url(@/assets/img/yellow.webp);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

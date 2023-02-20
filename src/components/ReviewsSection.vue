@@ -6,7 +6,6 @@
       </h2>
       <swiper
         :slides-per-view="1"
-        :space-between="50"
         :pagination="true"
         :navigation="true"
         :loop="true"
@@ -23,8 +22,8 @@
           </div>
           <div class="reviews__img-wrapper">
             <img
-              :src="require(`@/assets/img/reviews/${item.id}.jpg`)"
-              class="reviews__img"
+              :src="require(`@/assets/img/reviews/${item.id}.webp`)"
+              class="common__img reviews__img"
               @click="onShowImg(item.id)"
             />
           </div>
@@ -80,7 +79,7 @@ export default {
   },
   methods: {
     onShowImg(id) {
-      this.modalImg = require(`@/assets/img/reviews/${id}.jpg`);
+      this.modalImg = require(`@/assets/img/reviews/${id}.webp`);
       this.showModal = true;
     },
   },
@@ -109,9 +108,7 @@ export default {
   }
   &__text-content {
     flex: 1;
-    @media only screen and (max-width: $md) {
-      margin-bottom: 30px;
-    }
+    margin-bottom: 30px;
   }
   &__img {
     border-radius: 4px;
@@ -131,7 +128,7 @@ export default {
     justify-content: flex-start;
     height: 370px;
     margin-bottom: 90px;
-    background-image: url(@/assets/img/yellow.png);
+    background-image: url(@/assets/img/yellow.webp);
     background-repeat: no-repeat;
     background-size: contain;
     @media only screen and (max-width: $xl) {

@@ -4,7 +4,7 @@
       <h2 class="common__h2">Контакты</h2>
       <p>Адрес: 190103, город Санкт-Петербург, Дровяная ул., д.6/26 литер а</p>
       <p>Почта: rusexpertiza@yandex.ru</p>
-      <p class="contacts__last-text">8(812)9629381</p>
+      <p class="contacts__last-text">8(812)962-93-81</p>
     </div>
     <yandex-map
       :coords="coords"

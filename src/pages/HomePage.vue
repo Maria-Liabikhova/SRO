@@ -72,7 +72,7 @@ export default {
   bottom: 50px;
   margin-left: 30px;
   margin-top: -70px;
-  background-color: var(--light-green);
+  background: linear-gradient(45deg, var(--light-green) 0%, var(--yellow) 100%);
   display: flex;
   width: 70px;
   height: 70px;
@@ -80,8 +80,8 @@ export default {
   justify-content: center;
   align-items: center;
   transition: all 0.3s ease;
+  opacity: 0.8;
   z-index: 2;
-  opacity: 0.7;
   @media only screen and (max-width: $lg) {
     width: 60px;
     height: 60px;
@@ -108,7 +108,8 @@ export default {
   }
   &:hover {
     transition: all 0.3s ease;
-    opacity: 0.95;
+    opacity: 1;
+    box-shadow: 5px 5px 15px var(--violet-light);
   }
 }
 </style>

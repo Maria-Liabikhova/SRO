@@ -3,7 +3,7 @@
     <div class="common__container">
       <div class="header__container">
         <div class="common__img-wrapper header__img-wrapper">
-          <img class="common__img" src="@/assets/img/logo_name.png" />
+          <img class="common__img" src="@/assets/img/logo_name.webp" />
         </div>
         <div class="header__contacts">
           <div class="header__link-wrapper">
@@ -145,18 +145,19 @@ export default {
     color: var(--gray-dark);
     margin-left: 20px;
     margin-right: 20px;
+    white-space: nowrap;
     &:hover,
     &:active {
       color: var(--black);
     }
     @media only screen and (max-width: $lg) {
       font-size: 18px;
+      margin-left: 0px;
+      margin-right: 10px;
     }
     @media only screen and (max-width: $md) {
       font-weight: 600;
       font-size: 16px;
-      margin-left: 0;
-      margin-right: 10px;
     }
     @media only screen and (max-width: $sm) {
       display: none;

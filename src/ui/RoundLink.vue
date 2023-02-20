@@ -21,6 +21,7 @@ export default {
   border-radius: 50%;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s ease;
   @media only screen and (max-width: $lg) {
     width: 40px;
     height: 40px;
@@ -30,7 +31,8 @@ export default {
     height: 35px;
   }
   &:hover {
-    background-color: var(--turquoise-dark);
+    box-shadow: 5px 5px 15px var(--violet-light);
+    transition: all 0.3s ease;
   }
   &__icon {
     height: 20px;
